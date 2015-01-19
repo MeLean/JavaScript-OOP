@@ -151,6 +151,7 @@ function processTravelAgencyCommands(commands) {
         }());
 
 		//static class validator 
+		// to get type of some value use typeof(value)
         var Vacation = (function(){
              function Vacation(name, startDate, endDate, price, location, accommodation) {
                 Travel.call(this, name, startDate, endDate, price); 
