@@ -51,7 +51,8 @@ function processTravelAgencyCommands(commands) {
 
         var Travel = (function() {
             function Travel(name, startDate, endDate, price) {
-                if (this.constructor === Travel) {
+				// abstract class declaration	
+			   if (this.constructor === Travel) {
                     throw new Error("Can not instantiate abstract class" + this.constructor.name + "!");
                 }
 
@@ -109,7 +110,8 @@ function processTravelAgencyCommands(commands) {
 
         var Excursion = (function(){
             function Excursion(name, startDate, endDate, price, transport) {
-                Travel.call(this, name, startDate, endDate, price);   
+                // calling the parent class constructor
+				Travel.call(this, name, startDate, endDate, price);   
                 this.setTransport(transport);
                 this._destination = {};                
             } 
@@ -139,7 +141,8 @@ function processTravelAgencyCommands(commands) {
             Excursion.prototype.toString = function(){
                 var DestinationStr = this.getDestination() ? this.getDestination().toString() : '-';
                 
-                return Travel.prototype.toString.call(this) +
+				
+                return Travel.prototype.toString.call(this) + //calling parent toString method
                 ',transport=' + this.getTransport() + '\r\n'
                 '** Destination' + DestinationStr;
             }           
@@ -147,7 +150,7 @@ function processTravelAgencyCommands(commands) {
             return Excursion;            
         }());
 
-
+		//static class validator 
         var Vacation = (function(){
              function Vacation(name, startDate, endDate, price, location, accommodation) {
                 Travel.call(this, name, startDate, endDate, price); 
